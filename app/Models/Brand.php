@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     use HasFactory;
+    protected $guarded =[];
+    protected $fillable =['name','logo','slug','description','status'];
 }

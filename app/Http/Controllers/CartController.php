@@ -15,7 +15,7 @@ class CartController extends Controller
     public function index()
     {
         $cart = Cart::all();
-        return $cart;
+        return array('success'=> 200, 'cart'=>$cart);
     }
 
     /**
@@ -25,7 +25,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +36,23 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cart = new Cart();
+        $cart->owner_id=$request->owner_id;
+        $cart->user_id=$request->user_id;
+        $cart->temp_user_id=$request->temp_user_id;
+        $cart->address_id=$request->address_id;
+        $cart->product_id=$request->product_id;
+        $cart->variation=$request->variation;
+        $cart->price=$request->price;
+        $cart->shipping_cost=$request->shipping_cost;
+        $cart->shipping_type=$request->shipping_type;
+        $cart->discount=$request->discount;
+        $cart->product_referral_code=$request->product_referral_code;
+        $cart->quantity=$request->quantity;
+
+        $cart->save();
+
+        return array('success'=> 200, 'data'=>$cart);
     }
 
     /**
@@ -47,7 +63,7 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        //
+        return array('success'=>200,'data'=>$cart);
     }
 
     /**
@@ -58,7 +74,7 @@ class CartController extends Controller
      */
     public function edit(Cart $cart)
     {
-        //
+        return array('success'=>200,'data'=>$cart);
     }
 
     /**
@@ -70,7 +86,22 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
-        //
+        $cart->owner_id=$request->owner_id;
+        $cart->user_id=$request->user_id;
+        $cart->temp_user_id=$request->temp_user_id;
+        $cart->address_id=$request->address_id;
+        $cart->product_id=$request->product_id;
+        $cart->variation=$request->variation;
+        $cart->price=$request->price;
+        $cart->shipping_cost=$request->shipping_cost;
+        $cart->shipping_type=$request->shipping_type;
+        $cart->discount=$request->discount;
+        $cart->product_referral_code=$request->product_referral_code;
+        $cart->quantity=$request->quantity;
+
+        $cart->save();
+
+        return array('success'=> 200, 'data'=>$cart);
     }
 
     /**
@@ -81,6 +112,7 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        //
+        $cart->delete();
+        return array('success'=> 200);
     }
 }

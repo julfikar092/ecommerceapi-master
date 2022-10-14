@@ -14,7 +14,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $city = City::all();
+        return array('success'=> 200, 'city'=>$city);
     }
 
     /**
@@ -35,7 +36,12 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $city = new City();
+        $city->name=$request->name;
+        $city->slug=$request->slug;
+        $city->save();
+
+        return array('success'=> 200, 'data'=>$city);
     }
 
     /**
@@ -46,7 +52,7 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-        //
+        return array('success'=> 200, 'city'=>$city);
     }
 
     /**
@@ -57,7 +63,7 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        return array('success'=> 200, 'city'=>$city);
     }
 
     /**
@@ -69,7 +75,12 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
-        //
+        $city->name=$request->name;
+        $city->slug=$request->slug;
+        $city->status=$request->status;
+        $city->save();
+
+        return array('success'=> 200, 'data'=>$city);
     }
 
     /**
@@ -80,6 +91,7 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        $city->delete();
+        return array('success'=> 200);
     }
 }

@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category_lists = Category::all();
-        return $category_lists;
+        return array('success'=> 200, 'category_lists'=>$category_lists);
     }
 
     /**
@@ -36,20 +36,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-            'parent_id'=>$request->parent_id,
-            'name'=>$request->name,
-            'slug'=>$request->slug,
-            'level'=>$request->level,
-            'order_level'=>$request->order_level,
-            'commission_rate'=>$request->commission_rate,
-            'banner'=>$request->banner,
-            'icon'=>$request->icon,
-            'featured'=>$request->featured,
-            'description'=>$request->description,
+        $category = new Category();
+        $category->parent_id=$request->parent_id;
+        $category->name=$request->name;
+        $category->slug=$request->name;
+        $category->level=$request->level;
+        $category->order_level=$request->order_level;
+        $category->commision_rate=$request->commision_rate;
+        $category->banner=$request->banner;
+        $category->icon=$request->icon;
+        $category->featured=$request->featured;
+        $category->description=$request->description;
+        $category->status=$request->status;
+        $category->save();
 
-        ]);
-        return array('success'=>200);
+        return array('success'=> 200, 'data'=>$category);
     }
 
     /**
@@ -58,10 +59,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $Category = Category::findOrFail($id);
-        return array('success'=>200,'data'=>$Category);
+    public function show(Category $category)
+    {        
+        return array('success'=> 200, 'category'=>$category);
     }
 
     /**
@@ -70,9 +70,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return array('success'=> 200, 'category'=>$category);
     }
 
     /**
@@ -82,23 +82,23 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  Category $category)
     {
-        Category::update([
-            'parent_id'=>$request->parent_id,
-            'name'=>$request->name,
-            'slug'=>$request->slug,
-            'level'=>$request->level,
-            'order_level'=>$request->order_level,
-            'commission_rate'=>$request->commission_rate,
-            'banner'=>$request->banner,
-            'icon'=>$request->icon,
-            'featured'=>$request->featured,
-            'description'=>$request->description,
-            'status'=>$request->status,
 
-        ]);
-        return array('success'=>200);
+        $category->parent_id=$request->parent_id;
+        $category->name=$request->name;
+        $category->slug=$request->name;
+        $category->level=$request->level;
+        $category->order_level=$request->order_level;
+        $category->commision_rate=$request->commision_rate;
+        $category->banner=$request->banner;
+        $category->icon=$request->icon;
+        $category->featured=$request->featured;
+        $category->description=$request->description;
+        $category->status=$request->status;
+        $category->save();
+
+        return array('success'=> 200, 'data'=>$category);
     }
 
     /**
@@ -107,9 +107,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        Category::findOrFail($id)->delete();
-        return array('success'=>200);
+    public function destroy(Category $category)
+    {        
+        $category->delete();
+        return array('success'=> 200);
     }
 }

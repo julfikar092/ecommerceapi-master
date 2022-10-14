@@ -14,7 +14,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $blog = Blog::all();
+        return array('success'=> 200, 'blog'=>$blog);
     }
 
     /**
@@ -35,7 +36,17 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $blog = new Blog();
+        $blog->category_id=$request->category_id;
+        $blog->title=$request->title;
+        $blog->slug=$request->slug;
+        $blog->short_description=$request->short_description;
+        $blog->description=$request->description;
+        $blog->banner=$request->banner;
+
+        $blog->save();
+
+        return array('success'=> 200, 'data'=>$blog);
     }
 
     /**
@@ -46,7 +57,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        return array('success'=> 200, 'blog'=>$blog);
     }
 
     /**
@@ -57,7 +68,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        return array('success'=> 200, 'blog'=>$blog);
     }
 
     /**
@@ -69,7 +80,17 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $blog->category_id=$request->category_id;
+        $blog->title=$request->title;
+        $blog->slug=$request->slug;
+        $blog->short_description=$request->short_description;
+        $blog->description=$request->description;
+        $blog->banner=$request->banner;
+        $blog->status=$request->status;
+
+        $blog->save();
+
+        return array('success'=> 200, 'data'=>$blog);
     }
 
     /**
@@ -80,6 +101,7 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        $blog->delete();
+        return array('success'=> 200);
     }
 }
