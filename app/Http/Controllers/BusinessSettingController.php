@@ -14,7 +14,8 @@ class BusinessSettingController extends Controller
      */
     public function index()
     {
-        //
+        $businessSetting = BusinessSetting::all();
+        return array('success'=> 200, 'businessSetting'=>$businessSetting);
     }
 
     /**
@@ -35,7 +36,12 @@ class BusinessSettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $businessSetting = new BusinessSetting();
+        $businessSetting->type=$request->type;
+        $businessSetting->value=$request->value;
+        $businessSetting->save();
+
+        return array('success'=> 200, 'data'=>$businessSetting);
     }
 
     /**
@@ -46,7 +52,7 @@ class BusinessSettingController extends Controller
      */
     public function show(BusinessSetting $businessSetting)
     {
-        //
+        return array('success'=> 200, 'businessSetting'=>$businessSetting);
     }
 
     /**
@@ -57,7 +63,7 @@ class BusinessSettingController extends Controller
      */
     public function edit(BusinessSetting $businessSetting)
     {
-        //
+        return array('success'=> 200, 'businessSetting'=>$businessSetting);
     }
 
     /**
@@ -69,7 +75,11 @@ class BusinessSettingController extends Controller
      */
     public function update(Request $request, BusinessSetting $businessSetting)
     {
-        //
+        $businessSetting->type=$request->type;
+        $businessSetting->value=$request->value;
+        $businessSetting->save();
+
+        return array('success'=> 200, 'data'=>$businessSetting);
     }
 
     /**
@@ -80,6 +90,7 @@ class BusinessSettingController extends Controller
      */
     public function destroy(BusinessSetting $businessSetting)
     {
-        //
+        $businessSetting->delete();
+        return array('success'=> 200);
     }
 }

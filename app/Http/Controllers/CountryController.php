@@ -14,7 +14,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $country = Country::all();
+        return array('success'=> 200, 'country'=>$country);
     }
 
     /**
@@ -35,7 +36,13 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $country = new Country();
+        $country->code=$request->code;
+        $country->name=$request->name;
+        $country->slug=$request->slug;
+        $country->save();
+
+        return array('success'=> 200, 'data'=>$country);
     }
 
     /**
@@ -46,7 +53,7 @@ class CountryController extends Controller
      */
     public function show(Country $country)
     {
-        //
+        return array('success'=> 200, 'country'=>$country);
     }
 
     /**
@@ -57,7 +64,7 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        //
+        return array('success'=> 200, 'country'=>$country);
     }
 
     /**
@@ -69,7 +76,13 @@ class CountryController extends Controller
      */
     public function update(Request $request, Country $country)
     {
-        //
+        $country->code=$request->code;
+        $country->name=$request->name;
+        $country->slug=$request->slug;
+        $country->status=$request->status;
+        $country->save();
+
+        return array('success'=> 200, 'data'=>$country);
     }
 
     /**
@@ -80,6 +93,7 @@ class CountryController extends Controller
      */
     public function destroy(Country $country)
     {
-        //
+        $country->delete();
+        return array('success'=> 200);
     }
 }

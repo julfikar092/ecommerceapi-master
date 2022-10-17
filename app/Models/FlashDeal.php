@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class FlashDeal extends Model
 {
     use HasFactory;
+    protected $guarded =[];
+    protected $fillable =['title','start_date','end_date','status','featured','background_color','text_color','banner','slug'];
 }

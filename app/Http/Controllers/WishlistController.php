@@ -14,7 +14,9 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        //
+        $wishlist = Wishlist::all();
+        return array('success'=> 200, 'wishlist'=>$wishlist); 
+        
     }
 
     /**
@@ -35,7 +37,11 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $wishlist = new Wishlist();
+        $wishlist->type=$request->type;
+        $wishlist->value=$request->value;
+        $wishlist->save();
+
     }
 
     /**
@@ -46,7 +52,8 @@ class WishlistController extends Controller
      */
     public function show(Wishlist $wishlist)
     {
-        //
+        return array('success'=> 200, 'data'=>$wishlist);
+        
     }
 
     /**
@@ -57,7 +64,8 @@ class WishlistController extends Controller
      */
     public function edit(Wishlist $wishlist)
     {
-        //
+        return array('success'=> 200, 'wishlist'=>$wishlist);
+        
     }
 
     /**
@@ -69,7 +77,10 @@ class WishlistController extends Controller
      */
     public function update(Request $request, Wishlist $wishlist)
     {
-        //
+        $wishlist->type=$request->type;
+        $wishlist->value=$request->value;
+        $wishlist->save();
+
     }
 
     /**
@@ -80,6 +91,7 @@ class WishlistController extends Controller
      */
     public function destroy(Wishlist $wishlist)
     {
-        //
+        $wishlist->delete();
+        return array('success'=> 200);
     }
 }

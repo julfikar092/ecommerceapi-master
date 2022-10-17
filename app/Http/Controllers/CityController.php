@@ -39,6 +39,7 @@ class CityController extends Controller
         $city = new City();
         $city->name=$request->name;
         $city->slug=$request->slug;
+        $city->state_id=$request->state_id;
         $city->save();
 
         return array('success'=> 200, 'data'=>$city);
@@ -77,6 +78,7 @@ class CityController extends Controller
     {
         $city->name=$request->name;
         $city->slug=$request->slug;
+        $city->state_id=$request->state_id;
         $city->status=$request->status;
         $city->save();
 

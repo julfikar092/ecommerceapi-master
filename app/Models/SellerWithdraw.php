@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SellerWithdraw extends Model
 {
     use HasFactory;
+    protected $guarded =[];
+    protected $fillable =['user_id','amount','message','status','viewed'];
 }

@@ -14,7 +14,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        $color = Color::all();
+        return array('success'=> 200, 'color'=>$color);
     }
 
     /**
@@ -35,7 +36,12 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $color = new Color();
+        $color->name=$request->name;
+        $color->code=$request->code;
+        $color->save();
+
+        return array('success'=> 200, 'data'=>$color);
     }
 
     /**
@@ -46,7 +52,7 @@ class ColorController extends Controller
      */
     public function show(Color $color)
     {
-        //
+        return array('success'=>200,'data'=>$color);
     }
 
     /**
@@ -57,7 +63,7 @@ class ColorController extends Controller
      */
     public function edit(Color $color)
     {
-        //
+        return array('success'=>200,'data'=>$color);
     }
 
     /**
@@ -69,7 +75,11 @@ class ColorController extends Controller
      */
     public function update(Request $request, Color $color)
     {
-        //
+        $color->name=$request->name;
+        $color->code=$request->code;
+        $color->save();
+
+        return array('success'=> 200, 'data'=>$color);
     }
 
     /**
@@ -80,6 +90,7 @@ class ColorController extends Controller
      */
     public function destroy(Color $color)
     {
-        //
+        $color->delete();
+        return array('success'=> 200);
     }
 }
