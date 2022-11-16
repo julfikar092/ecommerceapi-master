@@ -14,7 +14,8 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //
+        $address = Address::all();
+        return array('success'=> 200, 'address'=>$address);
     }
 
     /**
@@ -35,7 +36,20 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $address = new Address();
+        $address->user_id=$request->user_id;
+        $address->address=$request->address;
+        $address->country_id=$request->country_id;
+        $address->state_id=$request->state_id;
+        $address->city_id=$request->city_id;
+        $address->longitude=$request->longitude;
+        $address->latitude=$request->latitude;
+        $address->postal_code=$request->postal_code;
+        $address->phone=$request->phone;
+        $address->status=$request->status;
+
+        $address->save();
+        return array('success'=> 200, 'data'=>$address);
     }
 
     /**
@@ -46,7 +60,8 @@ class AddressController extends Controller
      */
     public function show(Address $address)
     {
-        //
+       
+        return array('success'=> 200, 'data'=>$address);
     }
 
     /**
@@ -57,7 +72,7 @@ class AddressController extends Controller
      */
     public function edit(Address $address)
     {
-        //
+        return array('success'=> 200, 'data'=>$address);
     }
 
     /**
@@ -69,7 +84,19 @@ class AddressController extends Controller
      */
     public function update(Request $request, Address $address)
     {
-        //
+        $address->user_id=$request->user_id;
+        $address->address=$request->address;
+        $address->country_id=$request->country_id;
+        $address->state_id=$request->state_id;
+        $address->city_id=$request->city_id;
+        $address->longitude=$request->longitude;
+        $address->latitude=$request->latitude;
+        $address->postal_code=$request->postal_code;
+        $address->phone=$request->phone;
+        $address->status=$request->status;
+
+        $address->save();
+        return array('success'=> 200, 'data'=>$address);
     }
 
     /**
@@ -80,6 +107,7 @@ class AddressController extends Controller
      */
     public function destroy(Address $address)
     {
-        //
+        $address->delete();
+        return array('success'=> 200, 'address'=>$address);
     }
 }

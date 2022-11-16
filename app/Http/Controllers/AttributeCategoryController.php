@@ -14,7 +14,8 @@ class AttributeCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $attributeCategory = AttributeCategory::all();
+        return array('success'=> 200, 'attributeCategory'=>$attributeCategory);
     }
 
     /**
@@ -35,7 +36,12 @@ class AttributeCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributeCategory = new Brand();
+        $attributeCategory->category_id=$request->category_id;
+        $attributeCategory->attribute_id=$request->attribute_id;
+
+        $attributeCategory->save();
+        return array('success'=> 200, 'attributeCategory'=>$attributeCategory);
     }
 
     /**
@@ -46,7 +52,7 @@ class AttributeCategoryController extends Controller
      */
     public function show(AttributeCategory $attributeCategory)
     {
-        //
+        return array('success'=> 200, 'attributeCategory'=>$attributeCategory);
     }
 
     /**
@@ -57,7 +63,7 @@ class AttributeCategoryController extends Controller
      */
     public function edit(AttributeCategory $attributeCategory)
     {
-        //
+        return array('success'=> 200, 'attributeCategory'=>$attributeCategory);
     }
 
     /**
@@ -69,7 +75,11 @@ class AttributeCategoryController extends Controller
      */
     public function update(Request $request, AttributeCategory $attributeCategory)
     {
-        //
+        $attributeCategory->category_id=$request->category_id;
+        $attributeCategory->attribute_id=$request->attribute_id;
+
+        $attributeCategory->save();
+        return array('success'=> 200, 'attributeCategory'=>$attributeCategory);
     }
 
     /**
@@ -80,6 +90,7 @@ class AttributeCategoryController extends Controller
      */
     public function destroy(AttributeCategory $attributeCategory)
     {
-        //
+        $attributeCategory->delete();
+        return array('success'=> 200);
     }
 }

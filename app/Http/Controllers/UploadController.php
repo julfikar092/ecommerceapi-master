@@ -14,7 +14,8 @@ class UploadController extends Controller
      */
     public function index()
     {
-        //
+        $upload = Upload::all();
+        return array('success'=> 200, 'upload'=>$upload);
     }
 
     /**
@@ -35,7 +36,19 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $upload = new Upload();
+        $upload->file_original_name=$request->file_original_name;
+        $upload->file_name=$request->file_name;
+        $upload->user_id=$request->user_id;
+        $upload->file_size=$request->file_size;
+        $upload->extension=$request->extension;
+        $upload->type=$request->type;
+        $upload->external_link=$request->external_link;
+
+        $upload->save();
+
+        return array('success'=> 200, 'data'=>$upload);
+
     }
 
     /**
@@ -46,7 +59,8 @@ class UploadController extends Controller
      */
     public function show(Upload $upload)
     {
-        //
+        return array('success'=> 200, 'data'=>$upload);
+
     }
 
     /**
@@ -57,7 +71,8 @@ class UploadController extends Controller
      */
     public function edit(Upload $upload)
     {
-        //
+        return array('success'=> 200, 'data'=>$upload);
+
     }
 
     /**
@@ -80,6 +95,7 @@ class UploadController extends Controller
      */
     public function destroy(Upload $upload)
     {
-        //
+        $upload->delete();
+        return array('success'=> 200);
     }
 }

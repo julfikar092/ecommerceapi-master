@@ -14,7 +14,8 @@ class SearchController extends Controller
      */
     public function index()
     {
-        //
+        $search = Search::all();
+        return array('success'=> 200, 'search'=>$search);
     }
 
     /**
@@ -35,7 +36,14 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $search = new Search();
+        $search->query=$request->query;
+        $search->count=$request->count;
+        
+        $search->save();
+
+        return array('success'=> 200, 'data'=>$search);
+
     }
 
     /**
@@ -46,7 +54,7 @@ class SearchController extends Controller
      */
     public function show(Search $search)
     {
-        //
+        return array('success'=> 200, 'search'=>$search);
     }
 
     /**
@@ -57,7 +65,7 @@ class SearchController extends Controller
      */
     public function edit(Search $search)
     {
-        //
+        return array('success'=> 200, 'search'=>$search);
     }
 
     /**
@@ -69,7 +77,12 @@ class SearchController extends Controller
      */
     public function update(Request $request, Search $search)
     {
-        //
+        $search->query=$request->query;
+        $search->count=$request->count;
+        
+        $search->save();
+
+        return array('success'=> 200, 'data'=>$search);
     }
 
     /**
@@ -80,6 +93,7 @@ class SearchController extends Controller
      */
     public function destroy(Search $search)
     {
-        //
+        $search->delete();
+        return array('success'=> 200);
     }
 }

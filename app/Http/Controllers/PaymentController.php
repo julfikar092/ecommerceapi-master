@@ -14,7 +14,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payment = Payment::all();
+        return array('success'=> 200, 'payment'=>$payment);
     }
 
     /**
@@ -35,7 +36,16 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $payment = new Payment();
+        $payment->seller_id=$request->seller_id;
+        $payment->amount=$request->amount;
+        $payment->payment_details=$request->payment_details;
+        $payment->payment_method=$request->payment_method;
+        $payment->txn_code=$request->txn_code;
+        $payment->save();
+
+        return array('success'=> 200, 'data'=>$payment);
+
     }
 
     /**
@@ -46,7 +56,7 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        return array('success'=> 200, 'payment'=>$payment);
     }
 
     /**
@@ -57,7 +67,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        return array('success'=> 200, 'payment'=>$payment);
     }
 
     /**
@@ -69,7 +79,14 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $payment->seller_id=$request->seller_id;
+        $payment->amount=$request->amount;
+        $payment->payment_details=$request->payment_details;
+        $payment->payment_method=$request->payment_method;
+        $payment->txn_code=$request->txn_code;
+        $payment->save();
+
+        return array('success'=> 200, 'data'=>$payment);
     }
 
     /**
@@ -80,6 +97,7 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        return array('success'=> 200);
     }
 }

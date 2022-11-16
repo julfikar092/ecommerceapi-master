@@ -14,7 +14,8 @@ class CouponUsageController extends Controller
      */
     public function index()
     {
-        //
+        $couponUsage = CouponUsage::all();
+        return array('success'=> 200, 'couponUsage'=>$couponUsage);
     }
 
     /**
@@ -35,7 +36,13 @@ class CouponUsageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $couponUsage = new CouponUsage();
+        $couponUsage->user_id=$request->user_id;
+        $couponUsage->coupon_id=$request->coupon_id;
+        $couponUsage->save();
+
+        return array('success'=> 200, 'data'=>$couponUsage);
+
     }
 
     /**
@@ -46,7 +53,7 @@ class CouponUsageController extends Controller
      */
     public function show(CouponUsage $couponUsage)
     {
-        //
+        return array('success'=> 200, 'couponUsage'=>$couponUsage);
     }
 
     /**
@@ -57,7 +64,7 @@ class CouponUsageController extends Controller
      */
     public function edit(CouponUsage $couponUsage)
     {
-        //
+        return array('success'=> 200, 'couponUsage'=>$couponUsage);
     }
 
     /**
@@ -69,7 +76,11 @@ class CouponUsageController extends Controller
      */
     public function update(Request $request, CouponUsage $couponUsage)
     {
-        //
+        $couponUsage->user_id=$request->user_id;
+        $couponUsage->coupon_id=$request->coupon_id;
+        $couponUsage->save();
+
+        return array('success'=> 200, 'data'=>$couponusage);
     }
 
     /**
@@ -80,6 +91,7 @@ class CouponUsageController extends Controller
      */
     public function destroy(CouponUsage $couponUsage)
     {
-        //
+        $couponUsage->delete();
+        return array('success'=> 200);
     }
 }

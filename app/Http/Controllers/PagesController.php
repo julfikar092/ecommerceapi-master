@@ -14,7 +14,8 @@ class PagesController extends Controller
      */
     public function index()
     {
-        //
+        $pages = Pages::all();
+        return array('success'=> 200, 'pages'=>$pages);
     }
 
     /**
@@ -35,7 +36,18 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pages = new Pages();
+        $pages->type=$request->type;
+        $pages->title=$request->title;
+        $pages->slug=$request->slug;
+        $pages->content=$request->content;
+        $pages->image=$request->image;
+        $pages->status=$request->status;
+
+        $pages->save();
+
+        return array('success'=> 200, 'data'=>$pages);
+
     }
 
     /**
@@ -46,7 +58,7 @@ class PagesController extends Controller
      */
     public function show(Pages $pages)
     {
-        //
+        return array('success'=> 200, 'pages'=>$pages);
     }
 
     /**
@@ -57,7 +69,7 @@ class PagesController extends Controller
      */
     public function edit(Pages $pages)
     {
-        //
+        return array('success'=> 200, 'pages'=>$pages);
     }
 
     /**
@@ -69,7 +81,17 @@ class PagesController extends Controller
      */
     public function update(Request $request, Pages $pages)
     {
-        //
+        $pages->type=$request->type;
+        $pages->title=$request->title;
+        $pages->slug=$request->slug;
+        $pages->content=$request->content;
+        $pages->image=$request->image;
+        $pages->status=$request->status;
+
+        $pages->save();
+
+        return array('success'=> 200, 'data'=>$pages);
+
     }
 
     /**
@@ -80,6 +102,7 @@ class PagesController extends Controller
      */
     public function destroy(Pages $pages)
     {
-        //
+        $pages->delete();
+        return array('success'=> 200);
     }
 }

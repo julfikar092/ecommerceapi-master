@@ -14,7 +14,8 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        //
+        $currency = Currency::all();
+        return array('success'=> 200, 'currency'=>$currency);
     }
 
     /**
@@ -35,7 +36,16 @@ class CurrencyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $currency = new Currency();
+        $currency->name=$request->name;
+        $currency->symbol=$request->symbol;
+        $currency->exchange_rate=$request->exchange_rate;
+        $currency->status=$request->status;
+        $currency->code=$request->code;
+        
+        $currency->save();
+        return array('success'=> 200, 'data'=>$currency);
+
     }
 
     /**
@@ -46,7 +56,7 @@ class CurrencyController extends Controller
      */
     public function show(Currency $currency)
     {
-        //
+        return array('success'=> 200, 'currency'=>$currency);
     }
 
     /**
@@ -57,7 +67,7 @@ class CurrencyController extends Controller
      */
     public function edit(Currency $currency)
     {
-        //
+        return array('success'=> 200, 'currency'=>$currency);
     }
 
     /**
@@ -69,7 +79,15 @@ class CurrencyController extends Controller
      */
     public function update(Request $request, Currency $currency)
     {
-        //
+        $currency->name=$request->name;
+        $currency->symbol=$request->symbol;
+        $currency->exchange_rate=$request->exchange_rate;
+        $currency->status=$request->status;
+        $currency->code=$request->code;
+        
+        $currency->save();
+        return array('success'=> 200, 'data'=>$currency);
+
     }
 
     /**
@@ -80,6 +98,7 @@ class CurrencyController extends Controller
      */
     public function destroy(Currency $currency)
     {
-        //
+        $currency->delete();
+        return array('success'=> 200);
     }
 }

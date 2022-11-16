@@ -14,7 +14,8 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $ticket = Ticket::all();
+        return array('success'=> 200, 'ticket'=>$ticket);
     }
 
     /**
@@ -35,7 +36,20 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ticket = new Ticket();
+        $ticket->code=$request->code;
+        $ticket->user_id=$request->user_id;
+        $ticket->subject=$request->subject;
+        $ticket->details=$request->details;
+        $ticket->files=$request->files;
+        $ticket->viewed=$request->viewed;
+        $ticket->client_viewed=$request->client_viewed;
+        $ticket->status=$request->status;
+
+        $ticket->save();
+
+        return array('success'=> 200, 'data'=>$ticket);
+
     }
 
     /**
@@ -46,7 +60,8 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
+        return array('success'=> 200, 'data'=>$ticket);
+
     }
 
     /**
@@ -57,7 +72,8 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        //
+        return array('success'=> 200, 'data'=>$ticket);
+
     }
 
     /**
@@ -69,7 +85,18 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        //
+        $ticket->code=$request->code;
+        $ticket->user_id=$request->user_id;
+        $ticket->subject=$request->subject;
+        $ticket->details=$request->details;
+        $ticket->files=$request->files;
+        $ticket->viewed=$request->viewed;
+        $ticket->client_viewed=$request->client_viewed;
+        $ticket->status=$request->status;
+
+        $ticket->save();
+
+        return array('success'=> 200, 'data'=>$ticket);
     }
 
     /**
@@ -80,6 +107,7 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
+        return array('success'=> 200);
     }
 }

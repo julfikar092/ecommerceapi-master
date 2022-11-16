@@ -14,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $role = Role::all();
+        return array('success'=> 200, 'role'=>$role);
     }
 
     /**
@@ -35,7 +36,14 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = new Role();
+        $role->name=$request->name;
+        $role->permissions=$request->permissions;
+       
+        $role->save();
+
+        return array('success'=> 200, 'data'=>$role);
+
     }
 
     /**
@@ -46,7 +54,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return array('success'=> 200, 'role'=>$role);
     }
 
     /**
@@ -57,7 +65,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return array('success'=> 200, 'role'=>$role);
     }
 
     /**
@@ -69,7 +77,12 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $role->name=$request->name;
+        $role->permissions=$request->permissions;
+       
+        $role->save();
+
+        return array('success'=> 200, 'data'=>$role);
     }
 
     /**
@@ -80,6 +93,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return array('success'=> 200);
     }
 }

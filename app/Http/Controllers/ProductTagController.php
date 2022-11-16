@@ -15,7 +15,8 @@ class ProductTagController extends Controller
      */
     public function index()
     {
-        //
+        $producttag = ProductTag::all();
+        return array('success'=> 200, 'producttag'=>$producttag);
     }
 
     /**
@@ -36,7 +37,14 @@ class ProductTagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producttag = new ProductTag();
+        $producttag->tag_id=$request->category_id;
+        $producttag->product_id=$request->title;
+    
+        $producttag->save();
+
+        return array('success'=> 200, 'data'=>$producttag);
+
     }
 
     /**
@@ -47,7 +55,7 @@ class ProductTagController extends Controller
      */
     public function show(ProductTag  $producttag)
     {
-        //
+        return array('success'=> 200, 'producttag'=>$producttag);
     }
 
     /**
@@ -58,7 +66,7 @@ class ProductTagController extends Controller
      */
     public function edit(ProductTag  $producttag)
     {
-        //
+        return array('success'=> 200, 'producttag'=>$producttag);
     }
 
     /**
@@ -81,6 +89,7 @@ class ProductTagController extends Controller
      */
     public function destroy(ProductTag  $producttag)
     {
-        //
+        $producttag->delete();
+        return array('success'=> 200);
     }
 }

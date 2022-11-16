@@ -14,7 +14,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        $shop = Shop::all();
+        return array('success'=> 200, 'shop'=>$shop);
     }
 
     /**
@@ -35,7 +36,24 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shop = new Shop();
+        $shop->user_id=$request->user_id;
+        $shop->name=$request->name;
+        $shop->logo=$request->logo;
+        $shop->sliders=$request->sliders;
+        $shop->phone=$request->phone;
+        $shop->address=$request->address;
+        $shop->facebook=$request->facebook;
+        $shop->instagram=$request->instagram;
+        $shop->google=$request->google;
+        $shop->twitter=$request->twitter;
+        $shop->youtube=$request->youtube;
+        $shop->slug=$request->slug;
+        $shop->shipping_cost=$request->shipping_cost;
+
+        $shop->save();
+
+        return array('success'=> 200, 'data'=>$shop);
     }
 
     /**
@@ -46,7 +64,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        //
+        return array('success'=> 200, 'shop'=>$shop);
     }
 
     /**
@@ -57,7 +75,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        //
+        return array('success'=> 200, 'shop'=>$shop);
     }
 
     /**
@@ -69,7 +87,23 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
-        //
+        $shop->user_id=$request->user_id;
+        $shop->name=$request->name;
+        $shop->logo=$request->logo;
+        $shop->sliders=$request->sliders;
+        $shop->phone=$request->phone;
+        $shop->address=$request->address;
+        $shop->facebook=$request->facebook;
+        $shop->instagram=$request->instagram;
+        $shop->google=$request->google;
+        $shop->twitter=$request->twitter;
+        $shop->youtube=$request->youtube;
+        $shop->slug=$request->slug;
+        $shop->shipping_cost=$request->shipping_cost;
+
+        $shop->save();
+
+        return array('success'=> 200, 'data'=>$shop);
     }
 
     /**
@@ -80,6 +114,7 @@ class ShopController extends Controller
      */
     public function destroy(Shop $shop)
     {
-        //
+        $shop->delete();
+        return array('success'=> 200);
     }
 }

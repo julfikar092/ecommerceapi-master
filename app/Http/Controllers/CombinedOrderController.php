@@ -14,7 +14,8 @@ class CombinedOrderController extends Controller
      */
     public function index()
     {
-        //
+        $combinedOrder = CombinedOrder::all();
+        return array('success'=> 200, 'combinedOrder'=>$combinedOrder);
     }
 
     /**
@@ -35,7 +36,13 @@ class CombinedOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $combinedOrder = new CombinedOrder();
+        $combinedOrder->user_id=$request->user_id;
+        $combinedOrder->shipping_address=$request->shipping_address;
+        $combinedOrder->grand_total=$request->grand_total;
+
+        $combinedOrder->save();
+        return array('success'=> 200, 'data'=>$combinedOrder);
     }
 
     /**
@@ -46,7 +53,8 @@ class CombinedOrderController extends Controller
      */
     public function show(CombinedOrder $combinedOrder)
     {
-        //
+        return array('success'=> 200, 'data'=>$combinedOrder);
+
     }
 
     /**
@@ -57,7 +65,7 @@ class CombinedOrderController extends Controller
      */
     public function edit(CombinedOrder $combinedOrder)
     {
-        //
+        return array('success'=> 200, 'data'=>$combinedOrder);
     }
 
     /**
@@ -69,7 +77,12 @@ class CombinedOrderController extends Controller
      */
     public function update(Request $request, CombinedOrder $combinedOrder)
     {
-        //
+        $combinedOrder->user_id=$request->user_id;
+        $combinedOrder->shipping_address=$request->shipping_address;
+        $combinedOrder->grand_total=$request->grand_total;
+
+        $combinedOrder->save();
+        return array('success'=> 200, 'data'=>$combinedOrder);
     }
 
     /**
@@ -80,6 +93,7 @@ class CombinedOrderController extends Controller
      */
     public function destroy(CombinedOrder $combinedOrder)
     {
-        //
+        $combinedOrder->delete();
+        return array('success'=> 200);
     }
 }

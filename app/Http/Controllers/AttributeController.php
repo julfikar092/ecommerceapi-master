@@ -14,7 +14,8 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        //
+        $attribute = Attribute::all();
+        return array('success'=> 200, 'attribute'=>$attribute);
     }
 
     /**
@@ -35,7 +36,10 @@ class AttributeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attribute = new Attribute();
+        $attribute->name=$request->name;
+        $attribute->save();
+        return array('success'=> 200, 'data'=>$attribute);
     }
 
     /**
@@ -46,7 +50,7 @@ class AttributeController extends Controller
      */
     public function show(Attribute $attribute)
     {
-        //
+        return array('success'=> 200, 'data'=>$attribute);
     }
 
     /**
@@ -57,7 +61,7 @@ class AttributeController extends Controller
      */
     public function edit(Attribute $attribute)
     {
-        //
+        return array('success'=> 200, 'data'=>$attribute);
     }
 
     /**
@@ -69,7 +73,9 @@ class AttributeController extends Controller
      */
     public function update(Request $request, Attribute $attribute)
     {
-        //
+        $attribute->name=$request->name;
+        $attribute->save();
+        return array('success'=> 200, 'data'=>$attribute);
     }
 
     /**
@@ -80,6 +86,7 @@ class AttributeController extends Controller
      */
     public function destroy(Attribute $attribute)
     {
-        //
+        $attribute->delete();
+        return array('success'=> 200, 'attribute'=>$attribute);
     }
 }

@@ -14,7 +14,8 @@ class ProductStokController extends Controller
      */
     public function index()
     {
-        //
+        $productStok = ProductStok::all();
+        return array('success'=> 200, 'productStok'=>$productStok);
     }
 
     /**
@@ -35,7 +36,18 @@ class ProductStokController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $productStok = new ProductStok();
+        $productStok->product_id=$request->product_id;
+        $productStok->variant=$request->variant;
+        $productStok->sku=$request->sku;
+        $productStok->price=$request->price;
+        $productStok->qty=$request->qty;
+        $productStok->image=$request->image;
+
+        $productStok->save();
+
+        return array('success'=> 200, 'data'=>$productStok);
+
     }
 
     /**
@@ -46,7 +58,7 @@ class ProductStokController extends Controller
      */
     public function show(ProductStok $productStok)
     {
-        //
+        return array('success'=> 200, 'data'=>$productStok);
     }
 
     /**
@@ -57,7 +69,7 @@ class ProductStokController extends Controller
      */
     public function edit(ProductStok $productStok)
     {
-        //
+        return array('success'=> 200, 'data'=>$productStok);
     }
 
     /**
@@ -69,7 +81,16 @@ class ProductStokController extends Controller
      */
     public function update(Request $request, ProductStok $productStok)
     {
-        //
+        $productStok->product_id=$request->product_id;
+        $productStok->variant=$request->variant;
+        $productStok->sku=$request->sku;
+        $productStok->price=$request->price;
+        $productStok->qty=$request->qty;
+        $productStok->image=$request->image;
+
+        $productStok->save();
+
+        return array('success'=> 200, 'data'=>$productStok);
     }
 
     /**
@@ -80,6 +101,7 @@ class ProductStokController extends Controller
      */
     public function destroy(ProductStok $productStok)
     {
-        //
+        $productStok->delete();
+        return array('success'=> 200);
     }
 }

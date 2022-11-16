@@ -14,7 +14,8 @@ class CommissionHistoryController extends Controller
      */
     public function index()
     {
-        //
+        $commissionHistory = CommissionHistory::all();
+        return array('success'=> 200, 'commissionHistory'=>$commissionHistory);
     }
 
     /**
@@ -35,7 +36,17 @@ class CommissionHistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $commissionHistory = new CommissionHistory();
+        $commissionHistory->order_id=$request->order_id;
+        $commissionHistory->order_detail_id=$request->order_detail_id;
+        $commissionHistory->seller_id=$request->seller_id;
+        $commissionHistory->admin_commission=$request->admin_commission;
+        $commissionHistory->seller_earning=$request->seller_earning;
+
+        $commissionHistory->save();
+
+        return array('success'=> 200, 'data'=>$commissionHistory);
+
     }
 
     /**
@@ -46,7 +57,7 @@ class CommissionHistoryController extends Controller
      */
     public function show(CommissionHistory $commissionHistory)
     {
-        //
+        return array('success'=> 200, 'commissionHistory'=>$commissionHistory);
     }
 
     /**
@@ -57,7 +68,7 @@ class CommissionHistoryController extends Controller
      */
     public function edit(CommissionHistory $commissionHistory)
     {
-        //
+        return array('success'=> 200, 'commissionHistory'=>$commissionHistory);
     }
 
     /**
@@ -69,7 +80,15 @@ class CommissionHistoryController extends Controller
      */
     public function update(Request $request, CommissionHistory $commissionHistory)
     {
-        //
+        $commissionHistory->order_id=$request->order_id;
+        $commissionHistory->order_detail_id=$request->order_detail_id;
+        $commissionHistory->seller_id=$request->seller_id;
+        $commissionHistory->admin_commission=$request->admin_commission;
+        $commissionHistory->seller_earning=$request->seller_earning;
+
+        $commissionHistory->save();
+
+        return array('success'=> 200, 'data'=>$commissionHistory);
     }
 
     /**
@@ -80,6 +99,7 @@ class CommissionHistoryController extends Controller
      */
     public function destroy(CommissionHistory $commissionHistory)
     {
-        //
+        $commissionHistory->delete();
+        return array('success'=> 200);
     }
 }

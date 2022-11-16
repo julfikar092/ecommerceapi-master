@@ -14,7 +14,8 @@ class FlashDealProductController extends Controller
      */
     public function index()
     {
-        //
+        $flashDealProduct = FlashDealProduct::all();
+        return array('success'=> 200, 'flashDealProduct'=>$flashDealProduct);
     }
 
     /**
@@ -35,7 +36,14 @@ class FlashDealProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $flashDealProduct = new FlashDealProduct();
+        $flashDealProduct->flash_deal_id=$request->flash_deal_id;
+        $flashDealProduct->product_id=$request->product_id;
+        $flashDealProduct->discount=$request->discount;
+        $flashDealProduct->discount_type=$request->discount_type;
+
+        $flashDealProduct->save();
+        return array('success'=> 200, 'data'=>$flashDealProduct);
     }
 
     /**
@@ -46,7 +54,7 @@ class FlashDealProductController extends Controller
      */
     public function show(FlashDealProduct $flashDealProduct)
     {
-        //
+        return array('success'=> 200, 'flashDealProduct'=>$flashDealProduct);
     }
 
     /**
@@ -57,7 +65,7 @@ class FlashDealProductController extends Controller
      */
     public function edit(FlashDealProduct $flashDealProduct)
     {
-        //
+        return array('success'=> 200, 'flashDealProduct'=>$flashDealProduct);
     }
 
     /**
@@ -69,7 +77,13 @@ class FlashDealProductController extends Controller
      */
     public function update(Request $request, FlashDealProduct $flashDealProduct)
     {
-        //
+        $flashDealProduct->flash_deal_id=$request->flash_deal_id;
+        $flashDealProduct->product_id=$request->product_id;
+        $flashDealProduct->discount=$request->discount;
+        $flashDealProduct->discount_type=$request->discount_type;
+
+        $flashDealProduct->save();
+        return array('success'=> 200, 'data'=>$flashDealProduct);
     }
 
     /**
@@ -80,6 +94,7 @@ class FlashDealProductController extends Controller
      */
     public function destroy(FlashDealProduct $flashDealProduct)
     {
-        //
+        $flashDealProduct->delete();
+        return array('success'=> 200);
     }
 }

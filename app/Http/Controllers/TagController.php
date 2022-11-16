@@ -10,7 +10,8 @@ class TagController extends Controller
 
     public function index()
     {
-        //
+        $tag = Tag::all();
+        return array('success'=> 200, 'tag'=>$tag);
     }
 
     /**
@@ -31,7 +32,16 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tag = new Tag();
+        $tag->name=$request->name;
+        $tag->slug=$request->slug;
+        $tag->description=$request->description;
+        $tag->status=$request->status;
+       
+        $tag->save();
+
+        return array('success'=> 200, 'data'=>$tag);
+
     }
 
     /**
@@ -42,7 +52,8 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return array('success'=> 200, 'data'=>$tag);
+
     }
 
     /**
@@ -53,7 +64,8 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return array('success'=> 200, 'data'=>$tag);
+
     }
 
     /**
@@ -65,7 +77,14 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag  $tag)
     {
-        //
+        $tag->name=$request->name;
+        $tag->slug=$request->slug;
+        $tag->description=$request->description;
+        $tag->status=$request->status;
+       
+        $tag->save();
+
+        return array('success'=> 200, 'data'=>$tag);
     }
 
     /**
@@ -76,7 +95,8 @@ class TagController extends Controller
      */
     public function destroy(Tag  $tag)
     {
-        //
+        $tag->delete();
+        return array('success'=> 200);
     }
 }
 

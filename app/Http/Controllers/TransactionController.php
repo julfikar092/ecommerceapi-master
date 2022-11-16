@@ -14,7 +14,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transaction = Transaction::all();
+        return array('success'=> 200, 'transaction'=>$transaction);
     }
 
     /**
@@ -35,7 +36,19 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transaction = new Transaction();
+        $transaction->user_id=$request->user_id;
+        $transaction->gateway=$request->gateway;
+        $transaction->payment_type=$request->payment_type;
+        $transaction->additional_content=$request->additional_content;
+        $transaction->mpesa_request=$request->mpesa_request;
+        $transaction->mpesa_receipt=$request->mpesa_receipt;
+        $transaction->status=$request->status;
+
+        $transaction->save();
+
+        return array('success'=> 200, 'data'=>$transaction);
+
     }
 
     /**
@@ -46,7 +59,8 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return array('success'=> 200, 'data'=>$transaction);
+
     }
 
     /**
@@ -57,7 +71,8 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        return array('success'=> 200, 'data'=>$transaction);
+
     }
 
     /**
@@ -69,7 +84,17 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $transaction->user_id=$request->user_id;
+        $transaction->gateway=$request->gateway;
+        $transaction->payment_type=$request->payment_type;
+        $transaction->additional_content=$request->additional_content;
+        $transaction->mpesa_request=$request->mpesa_request;
+        $transaction->mpesa_receipt=$request->mpesa_receipt;
+        $transaction->status=$request->status;
+
+        $transaction->save();
+
+        return array('success'=> 200, 'data'=>$transaction);
     }
 
     /**
@@ -80,6 +105,7 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+        return array('success'=> 200);
     }
 }

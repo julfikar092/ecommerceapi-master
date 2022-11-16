@@ -14,7 +14,8 @@ class SubscriberController extends Controller
      */
     public function index()
     {
-        //
+        $subscriber = Subscriber::all();
+        return array('success'=> 200, 'subscriber'=>$subscriber);
     }
 
     /**
@@ -35,7 +36,14 @@ class SubscriberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subscriber = new Subscriber();
+        $subscriber->email=$request->email;
+        $subscriber->status=$request->status;
+        
+        $subscriber->save();
+
+        return array('success'=> 200, 'data'=>$subscriber);
+
     }
 
     /**
@@ -46,7 +54,8 @@ class SubscriberController extends Controller
      */
     public function show(Subscriber $subscriber)
     {
-        //
+        return array('success'=> 200, 'data'=>$subscriber);
+
     }
 
     /**
@@ -57,7 +66,8 @@ class SubscriberController extends Controller
      */
     public function edit(Subscriber $subscriber)
     {
-        //
+        return array('success'=> 200, 'data'=>$subscriber);
+
     }
 
     /**
@@ -69,7 +79,12 @@ class SubscriberController extends Controller
      */
     public function update(Request $request, Subscriber $subscriber)
     {
-        //
+        $subscriber->email=$request->email;
+        $subscriber->status=$request->status;
+        
+        $subscriber->save();
+
+        return array('success'=> 200, 'data'=>$subscriber);
     }
 
     /**
@@ -80,6 +95,7 @@ class SubscriberController extends Controller
      */
     public function destroy(Subscriber $subscriber)
     {
-        //
+        $subscriber->delete();
+        return array('success'=> 200);
     }
 }

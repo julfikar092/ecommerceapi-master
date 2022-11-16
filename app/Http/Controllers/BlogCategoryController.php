@@ -14,7 +14,8 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $blogCategory = BlogCategory::all();
+        return array('success'=> 200, 'blogCategory'=>$blogCategory);
     }
 
     /**
@@ -35,7 +36,12 @@ class BlogCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $blogCategory = new BlogCategory();
+        $blogCategory->category_name=$request->category_name;
+        $blogCategory->slug=$request->slug;
+
+        $blogCategory->save();
+        return array('success'=> 200, 'data'=>$blogCategory);
     }
 
     /**
@@ -46,7 +52,7 @@ class BlogCategoryController extends Controller
      */
     public function show(BlogCategory $blogCategory)
     {
-        //
+        return array('success'=> 200, 'blogCategory'=>$blogCategory);
     }
 
     /**
@@ -57,7 +63,7 @@ class BlogCategoryController extends Controller
      */
     public function edit(BlogCategory $blogCategory)
     {
-        //
+        return array('success'=> 200, 'blogCategory'=>$blogCategory);
     }
 
     /**
@@ -69,7 +75,11 @@ class BlogCategoryController extends Controller
      */
     public function update(Request $request, BlogCategory $blogCategory)
     {
-        //
+        $blogCategory->category_name=$request->category_name;
+        $blogCategory->slug=$request->slug;
+
+        $blogCategory->save();
+        return array('success'=> 200, 'data'=>$blogCategory);
     }
 
     /**
@@ -80,6 +90,7 @@ class BlogCategoryController extends Controller
      */
     public function destroy(BlogCategory $blogCategory)
     {
-        //
+        $blogCategory->delete();
+        return array('success'=> 200);
     }
 }

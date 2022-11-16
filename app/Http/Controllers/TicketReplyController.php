@@ -14,7 +14,8 @@ class TicketReplyController extends Controller
      */
     public function index()
     {
-        //
+        $ticketReply = TicketReply::all();
+        return array('success'=> 200, 'ticketReply'=>$ticketReply);
     }
 
     /**
@@ -35,7 +36,17 @@ class TicketReplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ticketReply = new TicketReply();
+        $ticketReply->ticket_id=$request->ticket_id;
+        $ticketReply->user_id=$request->user_id;
+        $ticketReply->reply=$request->reply;
+        $ticketReply->files=$request->files;
+        $ticketReply->status=$request->status;
+       
+        $ticketReply->save();
+
+        return array('success'=> 200, 'data'=>$ticketReply);
+
     }
 
     /**
@@ -46,7 +57,8 @@ class TicketReplyController extends Controller
      */
     public function show(TicketReply $ticketReply)
     {
-        //
+        return array('success'=> 200, 'data'=>$ticketReply);
+
     }
 
     /**
@@ -57,7 +69,8 @@ class TicketReplyController extends Controller
      */
     public function edit(TicketReply $ticketReply)
     {
-        //
+        return array('success'=> 200, 'data'=>$ticketReply);
+
     }
 
     /**
@@ -69,7 +82,15 @@ class TicketReplyController extends Controller
      */
     public function update(Request $request, TicketReply $ticketReply)
     {
-        //
+        $ticketReply->ticket_id=$request->ticket_id;
+        $ticketReply->user_id=$request->user_id;
+        $ticketReply->reply=$request->reply;
+        $ticketReply->files=$request->files;
+        $ticketReply->status=$request->status;
+       
+        $ticketReply->save();
+
+        return array('success'=> 200, 'data'=>$ticketReply);
     }
 
     /**
@@ -80,6 +101,7 @@ class TicketReplyController extends Controller
      */
     public function destroy(TicketReply $ticketReply)
     {
-        //
+        $ticketReply->delete();
+        return array('success'=> 200);
     }
 }

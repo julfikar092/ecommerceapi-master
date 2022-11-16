@@ -14,7 +14,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $review = Review::all();
+        return array('success'=> 200, 'review'=>$review);
     }
 
     /**
@@ -35,7 +36,18 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $review = new Review();
+        $review->product_id=$request->product_id;
+        $review->user_id=$request->user_id;
+        $review->rating=$request->rating;
+        $review->comment=$request->comment;
+        $review->status=$request->status;
+        $review->viewed=$request->viewed;
+
+        $review->save();
+
+        return array('success'=> 200, 'data'=>$review);
+
     }
 
     /**
@@ -46,7 +58,7 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-        //
+        return array('success'=> 200, 'review'=>$review);
     }
 
     /**
@@ -57,7 +69,7 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        //
+        return array('success'=> 200, 'review'=>$review);
     }
 
     /**
@@ -69,7 +81,16 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
-        //
+        $review->product_id=$request->product_id;
+        $review->user_id=$request->user_id;
+        $review->rating=$request->rating;
+        $review->comment=$request->comment;
+        $review->status=$request->status;
+        $review->viewed=$request->viewed;
+
+        $review->save();
+
+        return array('success'=> 200, 'data'=>$review);
     }
 
     /**
@@ -80,6 +101,7 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        $review->delete();
+        return array('success'=> 200);
     }
 }

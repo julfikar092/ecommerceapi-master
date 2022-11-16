@@ -14,7 +14,8 @@ class AttributeValueController extends Controller
      */
     public function index()
     {
-        //
+        $attributeValue = AttributeValue::all();
+        return array('success'=> 200, 'attributeValue'=>$attributeValue);
     }
 
     /**
@@ -35,7 +36,14 @@ class AttributeValueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributeValue = new AttributeValue();
+        $attributeValue->name=$request->name;
+        $attributeValue->logo=$request->logo;
+        $attributeValue->slug=$request->slug;
+        $attributeValue->description=$request->description;
+
+        $attributeValue->save();
+        return array('success'=> 200, 'data'=>$attributeValue);
     }
 
     /**
@@ -46,7 +54,7 @@ class AttributeValueController extends Controller
      */
     public function show(AttributeValue $attributeValue)
     {
-        //
+        return array('success'=> 200, 'data'=>$attributeValue);
     }
 
     /**
@@ -57,7 +65,7 @@ class AttributeValueController extends Controller
      */
     public function edit(AttributeValue $attributeValue)
     {
-        //
+        return array('success'=> 200, 'data'=>$attributeValue);
     }
 
     /**
@@ -69,7 +77,13 @@ class AttributeValueController extends Controller
      */
     public function update(Request $request, AttributeValue $attributeValue)
     {
-        //
+   
+        $attributeValue->attribute_id=$request->attribute_id;
+        $attributeValue->value=$request->value;
+        $attributeValue->color_code=$request->color_code;
+
+        $attributeValue->save();
+        return array('success'=> 200, 'data'=>$attributeValue);
     }
 
     /**
@@ -80,6 +94,7 @@ class AttributeValueController extends Controller
      */
     public function destroy(AttributeValue $attributeValue)
     {
-        //
+        $attributeValue->delete();
+        return array('success'=> 200, 'attributeValue'=>$attributeValue);
     }
 }

@@ -14,7 +14,8 @@ class SellerWithdrawController extends Controller
      */
     public function index()
     {
-        //
+        $sellerWithdraw = SellerWithdraw::all();
+        return array('success'=> 200, 'sellerWithdraw'=>$sellerWithdraw);
     }
 
     /**
@@ -35,7 +36,17 @@ class SellerWithdrawController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sellerWithdraw = new SellerWithdraw();
+        $sellerWithdraw->user_id=$request->user_id;
+        $sellerWithdraw->amount=$request->amount;
+        $sellerWithdraw->message=$request->message;
+        $sellerWithdraw->status=$request->status;
+        $sellerWithdraw->viewed=$request->viewed;
+        
+        $sellerWithdraw->save();
+
+        return array('success'=> 200, 'data'=>$sellerWithdraw);
+
     }
 
     /**
@@ -46,7 +57,7 @@ class SellerWithdrawController extends Controller
      */
     public function show(SellerWithdraw $sellerWithdraw)
     {
-        //
+        return array('success'=> 200, 'sellerWithdraw'=>$sellerWithdraw);
     }
 
     /**
@@ -57,7 +68,7 @@ class SellerWithdrawController extends Controller
      */
     public function edit(SellerWithdraw $sellerWithdraw)
     {
-        //
+        return array('success'=> 200, 'sellerWithdraw'=>$sellerWithdraw);
     }
 
     /**
@@ -69,7 +80,15 @@ class SellerWithdrawController extends Controller
      */
     public function update(Request $request, SellerWithdraw $sellerWithdraw)
     {
-        //
+        $sellerWithdraw->user_id=$request->user_id;
+        $sellerWithdraw->amount=$request->amount;
+        $sellerWithdraw->message=$request->message;
+        $sellerWithdraw->status=$request->status;
+        $sellerWithdraw->viewed=$request->viewed;
+        
+        $sellerWithdraw->save();
+
+        return array('success'=> 200, 'data'=>$sellerWithdraw);
     }
 
     /**
@@ -80,6 +99,7 @@ class SellerWithdrawController extends Controller
      */
     public function destroy(SellerWithdraw $sellerWithdraw)
     {
-        //
+        $sellerWithdraw->delete();
+        return array('success'=> 200);
     }
 }

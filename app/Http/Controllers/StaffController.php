@@ -14,7 +14,8 @@ class StaffController extends Controller
      */
     public function index()
     {
-        //
+        $staff = Staff::all();
+        return array('success'=> 200, 'staff'=>$staff);
     }
 
     /**
@@ -35,7 +36,14 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $staff = new Staff();
+        $staff->user_id=$request->user_id;
+        $staff->role_id=$request->role_id;
+       
+        $staff->save();
+
+        return array('success'=> 200, 'data'=>$staff);
+
     }
 
     /**
@@ -46,7 +54,8 @@ class StaffController extends Controller
      */
     public function show(Staff $staff)
     {
-        //
+        return array('success'=> 200, 'data'=>$staff);
+
     }
 
     /**
@@ -57,7 +66,8 @@ class StaffController extends Controller
      */
     public function edit(Staff $staff)
     {
-        //
+        return array('success'=> 200, 'data'=>$staff);
+
     }
 
     /**
@@ -69,7 +79,12 @@ class StaffController extends Controller
      */
     public function update(Request $request, Staff $staff)
     {
-        //
+        $staff->user_id=$request->user_id;
+        $staff->role_id=$request->role_id;
+       
+        $staff->save();
+
+        return array('success'=> 200, 'data'=>$staff);
     }
 
     /**
@@ -80,6 +95,7 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-        //
+        $staff->delete();
+        return array('success'=> 200);
     }
 }

@@ -14,7 +14,8 @@ class WalletController extends Controller
      */
     public function index()
     {
-        //
+        $wallet = Wallet::all();
+        return array('success'=> 200, 'wallet'=>$wallet);
     }
 
     /**
@@ -35,7 +36,16 @@ class WalletController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $wallet = new Wallet();
+        $wallet->user_id=$request->user_id;
+        $wallet->amount=$request->amount;
+        $wallet->payment_method=$request->payment_method;
+        $wallet->payment_details=$request->payment_details;
+       
+        $wallet->save();
+
+        return array('success'=> 200, 'data'=>$wallet);
+
     }
 
     /**
@@ -46,7 +56,7 @@ class WalletController extends Controller
      */
     public function show(Wallet $wallet)
     {
-        //
+        return array('success'=> 200, 'data'=>$wallet);
     }
 
     /**
@@ -57,7 +67,8 @@ class WalletController extends Controller
      */
     public function edit(Wallet $wallet)
     {
-        //
+        return array('success'=> 200, 'data'=>$wallet);
+
     }
 
     /**
@@ -69,7 +80,15 @@ class WalletController extends Controller
      */
     public function update(Request $request, Wallet $wallet)
     {
-        //
+        $wallet->user_id=$request->user_id;
+        $wallet->amount=$request->amount;
+        $wallet->payment_method=$request->payment_method;
+        $wallet->payment_details=$request->payment_details;
+       
+        $wallet->save();
+
+        return array('success'=> 200, 'data'=>$wallet);
+       
     }
 
     /**
@@ -80,6 +99,7 @@ class WalletController extends Controller
      */
     public function destroy(Wallet $wallet)
     {
-        //
+        $wallet->delete();
+        return array('success'=> 200);
     }
 }

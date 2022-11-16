@@ -14,7 +14,8 @@ class StateController extends Controller
      */
     public function index()
     {
-        //
+        $state = State::all();
+        return array('success'=> 200, 'state'=>$state);
     }
 
     /**
@@ -35,7 +36,16 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $state = new State();
+        $state->name=$request->name;
+        $state->slug=$request->slug;
+        $state->country_id=$request->country_id;
+        $state->status=$request->status;
+        
+        $state->save();
+
+        return array('success'=> 200, 'data'=>$state);
+
     }
 
     /**
@@ -46,7 +56,8 @@ class StateController extends Controller
      */
     public function show(State $state)
     {
-        //
+        return array('success'=> 200, 'data'=>$state);
+
     }
 
     /**
@@ -57,7 +68,8 @@ class StateController extends Controller
      */
     public function edit(State $state)
     {
-        //
+        return array('success'=> 200, 'data'=>$state);
+
     }
 
     /**
@@ -69,7 +81,14 @@ class StateController extends Controller
      */
     public function update(Request $request, State $state)
     {
-        //
+        $state->name=$request->name;
+        $state->slug=$request->slug;
+        $state->country_id=$request->country_id;
+        $state->status=$request->status;
+        
+        $state->save();
+
+        return array('success'=> 200, 'data'=>$state);
     }
 
     /**
@@ -80,6 +99,7 @@ class StateController extends Controller
      */
     public function destroy(State $state)
     {
-        //
+        $state->delete();
+        return array('success'=> 200);
     }
 }
